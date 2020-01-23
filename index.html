@@ -22,12 +22,49 @@
             background: crimson;
             border-radius: 50%;
         }
+        .btn{
+            text-align: center;
+            background: #7dc800;
+            padding: .6em .8em .8em;
+            border: none;
+            color: #fff;
+            margin: .3em;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: inset 0 -.2em  rgba(0,0,0, .2);
+            outline: 0;
+            transition: .3s;
+            will-change: transform;
+        }
+
+        .bottons{
+            text-align: center;
+        }
+
+        .btn:active{
+            transform: scale(0.9);
+            transition: .3s;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="pelota" id="pelota">
-
+        </div>
+        <div class="bottons">
+            <button class="btn" id="play">
+                <i class="fas fa-play"></i>
+            </button>
+            <button class="btn" id="pause">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button class="btn" id="stop">
+                <i class="fas fa-stop"></i>
+            </button>
+            <button class="btn" id="reverse">
+                <i class="fas fa-backward"></i>
+            </button>
         </div>
     </div>
     <script>
@@ -35,7 +72,7 @@
 
         //element.animate(keyframe = [], option = {});
 
-        $pelota.animate([
+        const animation = $pelota.animate([
             {
                 transform: 'translateX(0)'
             },
@@ -47,12 +84,31 @@
             delay: 1000,
             direction: 'normal',
             easing: 'linear',
-            interations: Infinity,
+            iterations: Infinity,
             fill: 'forwards',
             iterationStart: .5, // va de 0 a 1, 1 = 100%
             //endDelay: 5000,
         })
 
+        const $playButton = document.getElementById('play');
+        const $pauseButton = document.getElementById('pause');
+        const $stopButton = document.getElementById('stop');
+        const $reverseButton = document.getElementById('reverse');
+
+        $playButton.addEventListener('click', (event) => {
+            animation.play();
+        });
+        $pauseButton.addEventListener('click', (event) => {
+            animation.pause();
+        });
+        $stopButton.addEventListener('click', (event) => {
+            animation.cancel();
+        });
+        $reverseButton.addEventListener('click', (event) => {
+            animation.reverse();
+        });
+
     </script>
+    <script src="https://kit.fontawesome.com/314d43079d.js" crossorigin="anonymous"></script>
 </body>
 </html>
