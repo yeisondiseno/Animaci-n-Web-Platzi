@@ -28,6 +28,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: 1s;
+            transition-delay: .5s;
+        }
+        .overlay.active{
+            opacity: 1;
+            visibility: visible;
+            transition: 1s;
         }
         .modal{
             max-width: 500px;
@@ -40,9 +49,7 @@
             animation: animationIn 1s forwards;
         }
         button{
-            border: solid 1px #97c93e;
-            background-color: #97c93e;
-            color: #262233;
+            color: #ffffff;
             padding: .8em 2em;
             cursor: pointer;
             border-radius: .3em;
@@ -50,9 +57,27 @@
             transition: 0.3s;
         }
         button:hover{
+            transition: 0.3s;
+        }
+
+        .primary{
+            border: solid 1px #97c93e;
+            background-color: #97c93e;
+        }
+
+        .primary:hover{
             color: #97c93e;
             background-color: #fff;
-            transition: 0.3s;
+        }
+
+        .warning{
+            border: solid 1px #ff463b;
+            background-color: #ff463b;
+        }
+
+        .warning:hover{
+            color: #ff463b;
+            background-color: #fff;
         }
 
         img{
@@ -91,8 +116,8 @@
 </head>
 <body>
     <img src="img/back.png" alt="">
-    <div class="overlay">
-        <div class="modal">
+    <div class="overlay active" id="overlay">
+        <div class="modal" id="modal">
             <h1>
                 Atención
             </h1>
@@ -103,14 +128,27 @@
                 ¿te gustó?
             </p>
             <div class="modal-buttons">
-                <button>
+                <button class="primary" id="hide-modal">
                     Si, está genial
                 </button>
-                <button>
+                <button class="warning">
                     No, :(
                 </button>
             </div>
         </div>
     </div>
+    <script>
+
+        const $hideButton = document.getElementById('hide-modal');
+        const $modal = document.getElementById('modal');
+        const $overlay = document.getElementById('overlay');
+
+        $hideButton.addEventListener('click', (event) => {
+            //console.log(event);
+            $modal.style.animation = 'animationOut .8s forwards';
+            $overlay.classList.remove('active');
+        });
+
+    </script>
 </body>
 </html>
