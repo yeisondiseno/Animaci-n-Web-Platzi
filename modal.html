@@ -31,7 +31,7 @@
             opacity: 0;
             visibility: hidden;
             transition: 1s;
-            transition-delay: .5s;
+            transition-delay: .4s;
         }
         .overlay.active{
             opacity: 1;
@@ -46,7 +46,6 @@
             padding: 2em;
             border-radius: .5em;
             text-align: center;
-            animation: animationIn 1s forwards;
         }
         button{
             color: #ffffff;
@@ -88,13 +87,16 @@
             0%{
                 transform: translateY(-150vh);
             }
-            50%{
+            40%{
+                transform: translateY(-150vh);
+            }
+            70%{
                 transform: translateY(8vh);
             }
-            75%{
+            80%{
                 transform: translateY(-3vh);
             }
-            90%{
+            95%{
                 transform: translateY(1vh);
             }
         }
@@ -115,8 +117,8 @@
     </style>
 </head>
 <body>
-    <img src="img/back.png" alt="">
-    <div class="overlay active" id="overlay">
+    <img src="img/back.png" alt="" onclick="openModal()">
+    <div class="overlay" id="overlay" >
         <div class="modal" id="modal">
             <h1>
                 Atención
@@ -128,10 +130,10 @@
                 ¿te gustó?
             </p>
             <div class="modal-buttons">
-                <button class="primary" id="hide-modal">
+                <button class="primary" id="hide-modal" onclick="closeModal()">
                     Si, está genial
                 </button>
-                <button class="warning">
+                <button class="warning" onclick="closeModal()">
                     No, :(
                 </button>
             </div>
@@ -139,15 +141,28 @@
     </div>
     <script>
 
-        const $hideButton = document.getElementById('hide-modal');
         const $modal = document.getElementById('modal');
         const $overlay = document.getElementById('overlay');
 
-        $hideButton.addEventListener('click', (event) => {
-            //console.log(event);
+        function closeModal() {
+            console.log('cerró');
             $modal.style.animation = 'animationOut .8s forwards';
             $overlay.classList.remove('active');
-        });
+        };
+
+        function openModal() {
+            console.log('abrió')
+            $modal.style.animation = 'animationIn 1.2s  forwards';
+            $overlay.classList.add('active');
+        };
+
+        $overlay.addEventListener('click', (event) => {
+            if (event.target === $overlay) {
+                console.log('cerró overlay');
+                $modal.style.animation = 'animationOut .8s forwards';
+                $overlay.classList.remove('active');
+            }
+        } );
 
     </script>
 </body>
