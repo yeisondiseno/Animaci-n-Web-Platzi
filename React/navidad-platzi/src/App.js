@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import logoPlatzi from './img/platzi-logo.png';
 import './App.css';
 import {CSSTransitionGroup}  from 'react-transition-group'; // ES6
-
 
 
 function App() {
@@ -12,20 +11,16 @@ function App() {
       <header className="App-header">
         <CSSTransitionGroup
           transitionName="fade"
-        >
-          <img src={logoPlatzi} className="App-logo" alt="logo" />
+          trasitionEnterTimeout={1000}
+          trasitionLeaveTimeout={1000}>
+          <img src={logoPlatzi} className="App-logo" alt="logo"/>
         </CSSTransitionGroup>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>
+          Hola mundo
+        </h2>
+        <button >
+          Click me!
+        </button>
       </header>
     </div>
   );
